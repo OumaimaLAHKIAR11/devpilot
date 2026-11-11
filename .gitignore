@@ -1,0 +1,7 @@
+.env
+workspaces/
+benchmark/results/raw/
+**/target/
+frontend/node_modules/
+.idea/*
+!.idea/runConfigurations/
