@@ -1,0 +1,34 @@
+
+spring:
+  application:
+    name: devpilot-backend
+
+  datasource:
+    url: jdbc:postgresql://localhost:5433/devpilot
+    username: devpilot
+    password: ${POSTGRES_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+
+  flyway:
+    enabled: true
+
+  ai:
+    openai:
+      api-key: ${AZURE_OPENAI_API_KEY}
+      base-url: https://devpilot-resource.services.ai.azure.com
+      chat:
+        options:
+           model: gpt-5-mini
+
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
