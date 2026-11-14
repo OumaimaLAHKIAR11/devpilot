@@ -92,6 +92,11 @@
             <artifactId>spring-ai-starter-model-openai</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+
         <!-- MCP CLIENT -->
         <dependency>
             <groupId>org.springframework.ai</groupId>
@@ -129,6 +134,25 @@
             <artifactId>spring-boot-starter-actuator-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+
+        <!-- SWAGGER / OPENAPI -->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>3.2.0</version>
+        </dependency>
+
+
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+
+
 
         <dependency>
             <groupId>org.springframework.boot</groupId>

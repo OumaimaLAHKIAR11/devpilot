@@ -1,24 +1,23 @@
 
 package ma.ensias.devpilot.controller;
 
-import org.springframework.ai.chat.client.ChatClient;
+import ma.ensias.devpilot.ai.LlmService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class AiTestController {
 
-    private final ChatClient chatClient;
+    private final LlmService llmService;
 
-    public AiTestController(ChatClient.Builder builder) {
-        this.chatClient = builder.build();
+    public AiTestController(LlmService llmService) {
+        this.llmService = llmService;
     }
 
     @GetMapping("/api/ai/test")
     public String testAi() {
-        return chatClient.prompt()
-                .user("Réponds uniquement : Bonjour DevPilot")
-                .call()
-                .content();
+        return llmService.generate(
+                "Réponds uniquement : Bonjour DevPilot"
+        );
     }
 }
