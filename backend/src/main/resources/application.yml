@@ -1,4 +1,7 @@
 
+server:
+  port: 8081
+
 spring:
   application:
     name: devpilot-backend
@@ -20,12 +23,14 @@ spring:
   ai:
     openai:
       api-key: ${AZURE_OPENAI_API_KEY}
-      base-url: https://devpilot-resource.services.ai.azure.com
+      base-url: https://devfatuiha-resource.services.ai.azure.com/openai/v1
+
+      custom-headers:
+        api-key: ${AZURE_OPENAI_API_KEY}
+
       chat:
         options:
-           model: gpt-5-mini
-
-
+          model: gpt-5-mini
 
 management:
   endpoints:
