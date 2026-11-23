@@ -1,0 +1,30 @@
+﻿spring:
+  application:
+    name: devpilot-git-server
+
+  ai:
+    mcp:
+      server:
+        name: devpilot-git-server
+        version: 1.0.0
+        type: SYNC
+        protocol: STREAMABLE
+
+server:
+  port: ${SERVER_PORT:8083}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: never
+
+devpilot:
+  execution:
+    workspace-dir: ${DEVPILOT_WORKSPACE_DIR:./workspace}
+
+  security:
+    api-key: ${MCP_API_KEY:}
