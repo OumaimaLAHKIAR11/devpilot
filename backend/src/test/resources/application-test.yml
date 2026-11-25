@@ -1,0 +1,24 @@
+
+spring:
+  ai:
+    model:
+      chat: none
+      embedding: none
+
+    vectorstore:
+      pgvector:
+        initialize-schema: false
+
+  autoconfigure:
+    exclude:
+      - org.springframework.ai.vectorstore.pgvector.autoconfigure.PgVectorStoreAutoConfiguration
+
+  flyway:
+    enabled: true
+
+devpilot:
+  knowledge:
+    embedding:
+      provider: fake
+      model-id: fake-embedding
+      dimension: 1536
