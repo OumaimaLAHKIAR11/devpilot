@@ -1,4 +1,4 @@
-﻿package ma.ensias.devpilot.controller;
+package ma.ensias.devpilot.controller;
 
 import ma.ensias.devpilot.ai.LlmService;
 import org.springframework.context.annotation.Profile;
