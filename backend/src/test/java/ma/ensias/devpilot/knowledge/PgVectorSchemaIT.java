@@ -19,20 +19,22 @@ import org.testcontainers.utility.DockerImageName;
 import org.testcontainers.postgresql.PostgreSQLContainer;
 import ma.ensias.devpilot.knowledge.internal.embedding.FakeTextEmbedder;
 import ma.ensias.devpilot.knowledge.internal.embedding.TextEmbedder;
-
+import ma.ensias.devpilot.ai.LlmService;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import java.util.List;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-
 @SpringBootTest
 @ActiveProfiles("test")
 @Testcontainers
 @Tag("integration")
 @Import(PgVectorSchemaIT.FakeEmbeddingConfiguration.class)
-class PgVectorSchemaIT {
 
+class PgVectorSchemaIT {
+    @MockitoBean
+    LlmService llmService;
     @Container
     static PostgreSQLContainer pg = new PostgreSQLContainer(
             DockerImageName.parse("pgvector/pgvector:pg16")
