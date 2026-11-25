@@ -1,10 +1,10 @@
-.env
 workspaces/
 benchmark/results/raw/
 **/target/
 frontend/node_modules/
 .idea/*
 !.idea/runConfigurations/
+
 # Environment variables and secrets
 .env
 .env.*
@@ -20,3 +20,12 @@ Thumbs.db
 # Local configuration
 application-local.yml
 application-local.properties
+
+# Java Build Results: raw and extracted research data
+datasets/raw/
+datasets/extracted/
+java-build-results.tar.gz
+
+# Java Build Results: local candidate selection and Golden Set review artifacts
+/datasets/*.csv
+/datasets/*.txt
