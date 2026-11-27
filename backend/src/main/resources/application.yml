@@ -1,31 +1,43 @@
+﻿server:
+  port: 8081
 
 spring:
   application:
     name: devpilot-backend
-
   datasource:
     url: jdbc:postgresql://localhost:5433/devpilot
     username: devpilot
     password: ${POSTGRES_PASSWORD}
     driver-class-name: org.postgresql.Driver
-
   jpa:
     hibernate:
       ddl-auto: validate
     open-in-view: false
-
   flyway:
     enabled: true
-
   ai:
     openai:
       api-key: ${AZURE_OPENAI_API_KEY}
-      base-url: https://devpilot-resource.services.ai.azure.com
+      base-url: https://devfatuiha-resource.services.ai.azure.com/openai/v1
+      custom-headers:
+        api-key: ${AZURE_OPENAI_API_KEY}
       chat:
         options:
-           model: gpt-5-mini
+          model: gpt-5-mini
+      embedding:
+        base-url: https://devpilot-resource.services.ai.azure.com/openai/v1
+        api-key: ${AZURE_OPENAI_API_KEY}
+        model: ${AZURE_EMBEDDING_DEPLOYMENT}
+        dimensions: 1536
 
-
+devpilot:
+  knowledge:
+    embedding:
+      provider: spring-ai
+      model-id: text-embedding-3-small
+      dimension: 1536
+  fakes:
+    knowledge: true
 
 management:
   endpoints:
