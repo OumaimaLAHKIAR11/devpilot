@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.EnabledIfEnvironmentVariable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
+import org.junit.jupiter.api.Tag;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -15,6 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
         named = "AZURE_OPENAI_API_KEY",
         matches = ".+"
 )
+@Tag("azure")
 class EmbeddingProbeIT {
 
     @Autowired
