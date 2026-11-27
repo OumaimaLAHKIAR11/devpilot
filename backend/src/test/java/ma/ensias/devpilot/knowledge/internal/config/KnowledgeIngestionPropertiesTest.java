@@ -14,6 +14,7 @@ class KnowledgeIngestionPropertiesTest {
         // Given
         long maxFileSizeBytes = 10_485_760L;
         int maxExtractedTextChars = 2_000_000;
+        int maxPdfPages = 200;
         List<String> allowedExtensions = List.of("md", "markdown", "txt");
 
         // When
@@ -21,6 +22,7 @@ class KnowledgeIngestionPropertiesTest {
                 new KnowledgeIngestionProperties(
                         maxFileSizeBytes,
                         maxExtractedTextChars,
+                        maxPdfPages,
                         allowedExtensions
                 );
 
@@ -28,6 +30,7 @@ class KnowledgeIngestionPropertiesTest {
         assertEquals(maxFileSizeBytes, properties.maxFileSizeBytes());
         assertEquals(maxExtractedTextChars,
                 properties.maxExtractedTextChars());
+        assertEquals(maxPdfPages, properties.maxPdfPages());
         assertEquals(allowedExtensions, properties.allowedExtensions());
     }
 
@@ -46,6 +49,7 @@ class KnowledgeIngestionPropertiesTest {
                 new KnowledgeIngestionProperties(
                         10_485_760L,
                         2_000_000,
+                        200,
                         extensions
                 );
 
@@ -58,12 +62,12 @@ class KnowledgeIngestionPropertiesTest {
 
     @Test
     void shouldRejectNonPositiveMaxFileSizeBytes() {
-        // When & Then
         assertThrows(
                 IllegalArgumentException.class,
                 () -> new KnowledgeIngestionProperties(
                         0,
                         2_000_000,
+                        200,
                         List.of("md", "txt")
                 )
         );
@@ -71,11 +75,24 @@ class KnowledgeIngestionPropertiesTest {
 
     @Test
     void shouldRejectNonPositiveMaxExtractedTextChars() {
-        // When & Then
         assertThrows(
                 IllegalArgumentException.class,
                 () -> new KnowledgeIngestionProperties(
                         10_485_760L,
+                        0,
+                        200,
+                        List.of("md", "txt")
+                )
+        );
+    }
+
+    @Test
+    void shouldRejectNonPositiveMaxPdfPages() {
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> new KnowledgeIngestionProperties(
+                        10_485_760L,
+                        2_000_000,
                         0,
                         List.of("md", "txt")
                 )
@@ -84,12 +101,12 @@ class KnowledgeIngestionPropertiesTest {
 
     @Test
     void shouldRejectNullAllowedExtensions() {
-        // When & Then
         assertThrows(
                 IllegalArgumentException.class,
                 () -> new KnowledgeIngestionProperties(
                         10_485_760L,
                         2_000_000,
+                        200,
                         null
                 )
         );
@@ -97,12 +114,12 @@ class KnowledgeIngestionPropertiesTest {
 
     @Test
     void shouldRejectEmptyAllowedExtensions() {
-        // When & Then
         assertThrows(
                 IllegalArgumentException.class,
                 () -> new KnowledgeIngestionProperties(
                         10_485_760L,
                         2_000_000,
+                        200,
                         List.of()
                 )
         );

@@ -47,10 +47,12 @@ devpilot:
     ingestion:
       max-file-size-bytes: 10485760
       max-extracted-text-chars: 2000000
+      max-pdf-pages: 200
       allowed-extensions:
         - md
         - markdown
         - txt
+        - pdf
 
   fakes:
     knowledge: true

@@ -2,6 +2,7 @@
 package ma.ensias.devpilot.knowledge.internal.config;
 
 import java.util.List;
+import java.util.Locale;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
@@ -9,6 +10,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 public record KnowledgeIngestionProperties(
         long maxFileSizeBytes,
         int maxExtractedTextChars,
+        int maxPdfPages,
         List<String> allowedExtensions
 ) {
     public KnowledgeIngestionProperties {
@@ -22,6 +24,11 @@ public record KnowledgeIngestionProperties(
                     "maxExtractedTextChars must be positive");
         }
 
+        if (maxPdfPages <= 0) {
+            throw new IllegalArgumentException(
+                    "maxPdfPages must be positive");
+        }
+
         if (allowedExtensions == null || allowedExtensions.isEmpty()) {
             throw new IllegalArgumentException(
                     "allowedExtensions must not be empty");
@@ -29,7 +36,7 @@ public record KnowledgeIngestionProperties(
 
         allowedExtensions = allowedExtensions.stream()
                 .map(String::trim)
-                .map(s -> s.toLowerCase(java.util.Locale.ROOT))
+                .map(s -> s.toLowerCase(Locale.ROOT))
                 .map(s -> s.startsWith(".") ? s.substring(1) : s)
                 .distinct()
                 .toList();
