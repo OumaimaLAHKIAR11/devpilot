@@ -1,6 +1,9 @@
 
 package ma.ensias.devpilot.agent.diagnosis;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.List;
 
 public class DiagnosisResult {
@@ -11,12 +14,13 @@ public class DiagnosisResult {
     private Double confidence;
     private List<String> alternativeCauses;
 
+    @JsonCreator
     public DiagnosisResult(
-            String rootCause,
-            List<String> evidence,
-            List<String> affectedFiles,
-            Double confidence,
-            List<String> alternativeCauses) {
+            @JsonProperty("rootCause") String rootCause,
+            @JsonProperty("evidence") List<String> evidence,
+            @JsonProperty("affectedFiles") List<String> affectedFiles,
+            @JsonProperty("confidence") Double confidence,
+            @JsonProperty("alternativeCauses") List<String> alternativeCauses) {
 
         this.rootCause = rootCause;
         this.evidence = evidence;
